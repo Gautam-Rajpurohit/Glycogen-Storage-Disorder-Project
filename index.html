@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GSD Predictor</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+    <!-- Chart.js (If needed for future enhancements) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light custom-navbar">
+        <a class="navbar-brand" href="#">GSD Predictor</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#gsd-info-section">GSD Info</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#predict-section">Predict</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Container with Gradient Background -->
+    <div class="container-fluid" style="min-height: 100vh; background: linear-gradient(to right, #d4fc79, #96e6a1);">
+        <div class="row mt-5">
+            <!-- GSD Info Card -->
+            <div class="col-md-10 mx-auto" id="gsd-info-section">
+                <div class="card shadow-lg p-4 mb-4" style="background: linear-gradient(to top right, #ff758c, #ff7eb3); border-radius: 15px;">
+                    <div class="card-body">
+                        <h3 class="card-title text-white">What is Glycogen Storage Disorder?</h3>
+                        <p class="card-text text-white">
+                            Glycogen storage disorders (GSDs) are a group of inherited genetic disorders that cause glycogen to be improperly formed or released in the body. 
+                            People with GSDs have a buildup of glycogen, which can affect their liver, muscles, or both.
+                        </p>
+                        <p class="card-text text-white">
+                            There are different types of GSDs, depending on which enzyme is missing or not working properly. Type I (GSD I) is one of the most common.
+                        </p>
+                        <p class="card-text text-white">
+                            Symptoms can vary but may include low blood sugar, swollen abdomen due to an enlarged liver, and delayed growth.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GSD Prediction Button Card -->
+            <div class="col-md-8 mx-auto d-flex justify-content-center">
+                <div class="card shadow-lg p-4 mb-4" style="background: linear-gradient(to bottom right, #667eea, #764ba2); border-radius: 15px;">
+                    <div class="card-body text-center">
+                        <h4 class="card-title text-white">GSD Prediction</h4>
+                        <p class="card-text text-white">Click the button below to enter your details and check for Glycogen Storage Disorder prediction.</p>
+                        <a href="#predict-section" class="btn btn-lg text-white" style="background-color: #ff7eb3;">Enter Your Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Prediction Form Section -->
+    <div class="container-fluid min-vh-100 d-flex flex-column justify-content-center align-items-center gradient-bg" id="predict-section">
+        <div class="card shadow-lg p-4" style="max-width: 700px; width: 100%;">
+            <div class="card-body">
+                <h2 class="card-title text-center mb-4"><i class="fas fa-heartbeat"></i> GSD Prediction</h2>
+                
+                <!-- Prediction Form -->
+                <form id="prediction-form" action="/predict" method="POST">
+                    <div class="form-group">
+                        <label for="param1">Blood Sugar:</label>
+                        <input type="number" step="any" class="form-control" name="param1" placeholder="Enter Blood Sugar value" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="param2">Lactic Acid (mmol/L):</label>
+                        <input type="number" step="any" class="form-control" name="param2" placeholder="Enter Lactic Acid value" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="param3">Uric Acids (mg/dl):</label>
+                        <input type="number" step="any" class="form-control" name="param3" placeholder="Enter Uric Acid value" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="param4">Triglycerides (mg/dl):</label>
+                        <input type="number" step="any" class="form-control" name="param4" placeholder="Enter Triglycerides value" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="param5">Cholesterol (mg/dl):</label>
+                        <input type="number" step="any" class="form-control" name="param5" placeholder="Enter Cholesterol value" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="param6">Bilirubin (mg/dl):</label>
+                        <input type="number" step="any" class="form-control" name="param6" placeholder="Enter Bilirubin value" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="param7">ALP (U/L):</label>
+                        <input type="number" step="any" class="form-control" name="param7" placeholder="Enter ALP value" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="param8">ALT (U/L):</label>
+                        <input type="number" step="any" class="form-control" name="param8" placeholder="Enter ALT value" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="param9">AST (U/L):</label>
+                        <input type="number" step="any" class="form-control" name="param9" placeholder="Enter AST value" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-block">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Prediction Result Modal -->
+    <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="resultModalLabel">GSD Prediction Result</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            {% if prediction_text %}
+                <p id="predictionMessage">{{ prediction_text }}</p>
+                <p><strong>The output generated is bound to be inaccurate. We advise consulting a doctor before reaching any conclusion.</strong></p>
+                {% if override_message %}
+                    <p class="text-danger"><i class="fas fa-exclamation-triangle"></i> <strong>{{ override_message }}</strong></p>
+                {% elif 'Positive' in prediction_text %}
+                    <p class="text-danger"><i class="fas fa-info-circle"></i> Since the result is positive, it does not always mean you have GSD. In some cases, it can happen due to increased blood sugar or cholesterol levels.</p>
+                {% endif %}
+            {% endif %}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS and Dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom JS to Trigger Modal -->
+    <script>
+        $(document).ready(function(){
+            var predictionText = "{{ prediction_text }}";
+            if (predictionText) {
+                $('#resultModal').modal('show');
+            }
+        });
+    </script>
+
+</body>
+</html>
